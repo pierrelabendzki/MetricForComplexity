@@ -12,7 +12,7 @@ Flac codec at https://xiph.org/flac/index.htm
 
 For the sliding window and cumulative window : 
 
-Set the pathway of the .wav file and the size of the increment of window in seconds. The ```fenetre_cum``` and ```fentre_glissante``` functions return a one dimentional array of the complexity at every second of the track.        
+Set the pathway of the .wav file and the size of the increment of window in seconds. The ```fenetre_cumul``` and ```fentre_glissante``` functions return a one dimentional array of the complexity at every second of the track.        
 
 ```
 filename = 'TheWellTemperedClavier.wav'
