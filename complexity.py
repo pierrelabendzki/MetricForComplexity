@@ -3,6 +3,17 @@ import matplotlib.pyplot as plt
 from scipy.io import wavfile as io
 import os
 from IPython.display import clear_output
+import audiotools
+
+def normaliser_son_mono(x):
+    M = np.max(abs(x)); ## la plus grande valeur absolue du signal
+    return  x/M;
+
+def ConvertirWav(name_file,signal,rate):
+    signal = 0.5*normaliser_son_mono(signal)  ##pour protéger vos oreilles des saturations de vos enceintes 
+    scaled = np.round(32767*signal)
+    signal = scaled.astype(np.int16)
+    io.write(name_file, rate, signal)
 
 def wavtoflac(filepath_wav,mode):
     mode = 8 #default  
@@ -74,18 +85,15 @@ def fenetre_cumul(filename,step):
     print(str(step) + ' done ')    
     return liste_ratio
   
-filename = 'Wavfiles/Daft Punk/Discovery/Discovery-Track 11.wav'
-liste_ratio_0 = fenetre_glissante(filename,0.5)
-liste_ratio_1 = fenetre_glissante(filename,1)
-liste_ratio_2 = fenetre_glissante(filename,2)    
-liste_ratio_3 = fenetre_glissante(filename,5)    
-liste_ratio_4 = fenetre_glissante(filename,10)
+filename = 'TheWellTemperedClavier.wav'
+list_slide_5 = fenetre_glissante(filename,5)
+list_slide_10 = fenetre_glissante(filename,10)
+list_cumul_1 = fenetre_cumul(filename,1)
 
 plt.figure(figsize=(15,6))
-plt.plot(liste_ratio_0[:342], label = 'sliding window 0.5s' )
-plt.plot(liste_ratio_1[:342], label = 'sliding window 1s')
-plt.plot(liste_ratio_2[:342], label = 'sliding window 2s')
-plt.plot(liste_ratio_3[:342], label = 'sliding window 5s' )
-plt.plot(liste_ratio_4[:342], label = 'sliding window 10s' )
+plt.plot(list_slide_5, label = 'sliding window 5s' )
+plt.plot(list_slide_10, label = 'sliding window 10s' )
+plt.plot(liste_cumul_1, label = 'cumulative window 1s' )
+
 plt.legend(fontsize = 16)
-plt.legend(loc="lower center", bbox_to_anchor=(0.2, 0.0, 0.5, 0.1),ncol = 5)
+plt.legend(loc="lower center", bbox_to_anchor=(0.2, 0.0, 0.5, 0.1),ncol = 3)
