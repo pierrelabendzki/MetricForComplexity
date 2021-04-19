@@ -1,25 +1,8 @@
 import numpy as np
-from numpy import diff
 import matplotlib.pyplot as plt
 from scipy.io import wavfile as io
-import random 
 import os
 from IPython.display import clear_output
-
-
-RATE = 44100
-PI = 3.1415
-alpha = 2**(1/12)
-
-def normaliser_son_mono(x):
-    M = np.max(abs(x)); ## la plus grande valeur absolue du signal
-    return  x/M;
-
-def ConvertirWav(name_file,signal,rate):
-    signal = 0.5*normaliser_son_mono(signal)  ##pour protéger vos oreilles des saturations de vos enceintes 
-    scaled = np.round(32767*signal)
-    signal = scaled.astype(np.int16)
-    io.write(name_file, rate, signal)
 
 def wavtoflac(filepath_wav,mode):
     mode = 8 #default  
