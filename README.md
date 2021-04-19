@@ -4,7 +4,6 @@ Using lossless audio compression algorithmic to measure information content of m
 ### requirement 
 
 Python : 
-
 numpy, scypi, matplotlib 
 
 Flac codec at https://xiph.org/flac/index.html
