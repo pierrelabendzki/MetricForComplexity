@@ -97,3 +97,4 @@ plt.plot(liste_cumul_1, label = 'cumulative window 1s' )
 
 plt.legend(fontsize = 16)
 plt.legend(loc="lower center", bbox_to_anchor=(0.2, 0.0, 0.5, 0.1),ncol = 3)
+plt.show()
