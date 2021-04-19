@@ -74,7 +74,6 @@ def fenetre_cumul(filename,step):
     print(str(step) + ' done ')    
     return liste_ratio
   
-  
 filename = 'Wavfiles/Daft Punk/Discovery/Discovery-Track 11.wav'
 liste_ratio_0 = fenetre_glissante(filename,0.5)
 liste_ratio_1 = fenetre_glissante(filename,1)
